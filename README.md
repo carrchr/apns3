@@ -6,12 +6,14 @@
 A client library for Apple's APNS v3 HTTP/2 push notification service
 
 ## Requirements
-Python which supports TLSv1.2 is required. This means that only Python 2
-version 2.7.11 and higher and Python 3 version 3.4.0 and higher are supported
-unless you use pyOpenSSL.
+A Python distribution which supports ALPN and TLSv1.2 is required. This means
+that only Python 2 version 2.7.10 and higher and Python 3 version 3.5.0 and
+higher are supported unless you use pyOpenSSL. Other Python implementations,
+such as PyPy, may also be used as long as they provide an equivalent stdlib
 
-To install with pyOpenSSL support:
+# Alpha Warning
+I have tested that it is possible to send pushes to Apple devices, however I
+have not tested this at any significant scale and there are [many things left
+to do][enhancement_issues].
 
-```
-pip install apns3[pyopenssl]
-```
+[enhancement_issues]: https://github.com/joshfriend/apns3/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement
