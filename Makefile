@@ -133,11 +133,9 @@ PYTEST_OPTS := $(PYTEST_CORE_OPTS) $(PYTEST_COV_OPTS)
 test: depends
 	$(PYTEST) $(PYTEST_OPTS)
 
-test-all: test-py27 test-py34 test-py35
+test-all: test-py27 test-py35
 test-py27:
 	PYTHON_MAJOR=2 PYTHON_MINOR=7 $(MAKE) test
-test-py34:
-	PYTHON_MAJOR=3 PYTHON_MINOR=4 $(MAKE) test
 test-py35:
 	PYTHON_MAJOR=3 PYTHON_MINOR=5 $(MAKE) test
 
@@ -159,7 +157,7 @@ clean-all: clean .clean-env
 	find $(PACKAGE) tests -name '__pycache__' -delete
 	rm -rf *.egg-info
 
-.PHONY: clean-doc
+.PHONY: .clean-doc
 clean-doc:
 	rm -rf README.rst docs/build
 
