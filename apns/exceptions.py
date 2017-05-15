@@ -157,7 +157,10 @@ class Unregistered(TokenError):
         #: The last time at which APNs confirmed that the device token was no
         #: longer valid for the topic. Stop pushing notifications until the
         #: device registers a token with a later timestamp with your provider.
-        self.unavailable_since = datetime.utcfromtimestamp(ts)
+        seconds = int(ts * 0.001)
+        print('Token Error timestamp: ' + str(seconds) + ' Code: ' + str(code) + ' Token: ' + token)
+        if seconds < 2147483647:
+            self.unavailable_since = datetime.utcfromtimestamp(seconds)
 
 
 class TopicError(HeaderError):

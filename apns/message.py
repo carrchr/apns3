@@ -160,17 +160,17 @@ class Message(object):
     def headers(self):
         _id = None
         if self.id:
-            _id = str(self.id)
+            _id = unicode(self.id)
 
         _exp = EXPIRE_IMMEDIATELY
         if self.expiration:
             _exp = self.expiration - _EPOCH
 
         hdrs = {
-            'apns-id': _id,
-            'apns-topic': self.topic,
-            'apns-priority': self.priority,
-            'apns-expiration': _exp,
+            u'apns-id': _id,
+            u'apns-topic': unicode(self.topic),
+            u'apns-priority': unicode(self.priority),
+            u'apns-expiration': unicode(_exp),
         }
         return {k: v for k, v in iteritems(hdrs) if v is not None}
 
