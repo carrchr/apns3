@@ -5,7 +5,7 @@ import json
 import uuid
 from datetime import datetime
 
-from ._compat import iteritems, binary_type, cached_property
+from ._compat import iteritems, binary_type, cached_property, text_type
 
 __all__ = ('Alert', 'Message', 'HIGH_PRIORITY', 'LOW_PRIORITY',
            'EXPIRE_IMMEDIATELY')
@@ -160,7 +160,7 @@ class Message(object):
     def headers(self):
         _id = None
         if self.id:
-            _id = unicode(self.id)
+            _id = text_type(self.id)
 
         _exp = EXPIRE_IMMEDIATELY
         if self.expiration:
@@ -168,9 +168,9 @@ class Message(object):
 
         hdrs = {
             u'apns-id': _id,
-            u'apns-topic': unicode(self.topic),
-            u'apns-priority': unicode(self.priority),
-            u'apns-expiration': unicode(_exp),
+            u'apns-topic': text_type(self.topic),
+            u'apns-priority': text_type(self.priority),
+            u'apns-expiration': text_type(_exp),
         }
         return {k: v for k, v in iteritems(hdrs) if v is not None}
 

@@ -78,7 +78,7 @@ class Client(object):
         """
         assert token, 'Token cannot be empty or null'
 
-        print message.headers
+        print ('APNS Msg Head: ', message.headers)
 
         path = '/3/device/' + token
         stream_id = self._connection.request(
