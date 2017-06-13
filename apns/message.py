@@ -27,7 +27,7 @@ LOW_PRIORITY = 5
 #: If the message expiration is ``0``, APNs treats the notification as if
 #: it expires immediately and does not store the notification or attempt to
 #: redeliver it.
-EXPIRE_IMMEDIATELY = '0'
+EXPIRE_IMMEDIATELY = 0
 
 
 class Message(object):
@@ -164,7 +164,7 @@ class Message(object):
 
         _exp = EXPIRE_IMMEDIATELY
         if self.expiration:
-            _exp = self.expiration - _EPOCH
+            _exp = text_type(self.expiration - _EPOCH)
 
         hdrs = {
             u'apns-id': _id,

@@ -9,7 +9,7 @@ import pytest
 
 from apns import Message, Alert, HIGH_PRIORITY, LOW_PRIORITY, \
     EXPIRE_IMMEDIATELY
-from apns._compat import binary_type
+from apns._compat import binary_type, text_type
 
 from tests import EPOCH
 
@@ -37,7 +37,7 @@ class TestMessage(object):
 
     def test_headers_encodes_expiration(self):
         m = Message(expiration=EXPIRE_IMMEDIATELY)
-        assert m.headers['apns-expiration'] == EXPIRE_IMMEDIATELY
+        assert m.headers['apns-expiration'] == text_type(EXPIRE_IMMEDIATELY)
         new_millennium = datetime(2001, 1, 1)
         m = Message(expiration=new_millennium)
         assert m.headers['apns-expiration'] == new_millennium - EPOCH
